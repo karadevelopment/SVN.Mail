@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="OpenPop, Version=2.0.6.1120, Culture=neutral, PublicKeyToken=6bdb97f144b7efc8, processorArchitecture=MSIL">
+      <HintPath>..\packages\OpenPop.NET.2.0.6.1120\lib\net40\OpenPop.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Security" />
@@ -41,18 +44,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clients\SMTP.cs" />
+    <Compile Include="Clients\MailReceiver.cs" />
+    <Compile Include="Clients\MailSender.cs" />
+    <Compile Include="DataTransferObjects\AttachementDto.cs" />
+    <Compile Include="DataTransferObjects\MailDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SVN.Core\SVN.Core.csproj">
+      <Project>{82C01693-2843-4662-8BFC-3726F9E6F548}</Project>
+      <Name>SVN.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SVN.Debug\SVN.Debug.csproj">
       <Project>{4977ffe4-f923-4204-b081-17377ff5811e}</Project>
       <Name>SVN.Debug</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SVN.Security\SVN.Security.csproj">
+      <Project>{7C0B4214-A17B-4F87-95C4-6FB5C8A80EEE}</Project>
+      <Name>SVN.Security</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
     <None Include="nuget.nuspec" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
