@@ -5,6 +5,7 @@ namespace SVN.Mail.DataTransferObjects
 {
     public class MailDto
     {
+        public string Identifier { get; set; }
         public DateTime DateTime { get; set; }
         public string MailFrom { get; set; }
         public string Email { get; set; }
@@ -15,6 +16,7 @@ namespace SVN.Mail.DataTransferObjects
 
         public MailDto()
         {
+            this.Identifier = string.Empty;
             this.DateTime = DateTime.Now;
             this.MailFrom = string.Empty;
             this.Email = string.Empty;

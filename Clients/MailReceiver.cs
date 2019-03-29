@@ -68,10 +68,11 @@ namespace SVN.Mail.Clients
             }
         }
 
-        private MailDto CreateMail(Message message)
+        private MailDto CreateMail(Message message, string uid)
         {
             var result = new MailDto
             {
+                Identifier = uid,
                 DateTime = message.Headers.DateSent,
                 MailFrom = message.Headers.From.DisplayName,
                 Email = message.Headers.From.Address,
@@ -83,17 +84,22 @@ namespace SVN.Mail.Clients
             return result;
         }
 
-        public IEnumerable<MailDto> ReceiveAsync(int amount = int.MaxValue)
+        public IEnumerable<MailDto> ReceiveAsync(params string[] identifiers)
         {
             using (var client = new Pop3Client())
             {
                 client.Connect(this.Host, this.Port, this.EnableSsl);
                 client.Authenticate(this.Email, this.Password.Decrypt());
 
-                for (var i = 1; i <= Math.Min(amount, client.GetMessageCount()); i++)
+                var uids = client.GetMessageUids();
+                for (var i = 1; i <= uids.Count; i++)
                 {
-                    var message = client.GetMessage(i);
-                    yield return this.CreateMail(message);
+                    var uid = uids[i - 1];
+                    if (!identifiers.Contains(uid))
+                    {
+                        var message = client.GetMessage(i);
+                        yield return this.CreateMail(message, uid);
+                    }
                 }
 
                 client.Disconnect();
