@@ -33,6 +33,9 @@
     <Reference Include="OpenPop, Version=2.0.6.1120, Culture=neutral, PublicKeyToken=6bdb97f144b7efc8, processorArchitecture=MSIL">
       <HintPath>..\packages\OpenPop.NET.2.0.6.1120\lib\net40\OpenPop.dll</HintPath>
     </Reference>
+    <Reference Include="S22.Imap, Version=3.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\S22.Imap.3.6.0.0\lib\net40\S22.Imap.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Security" />
@@ -44,8 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clients\MailReceiver.cs" />
-    <Compile Include="Clients\MailSender.cs" />
+    <Compile Include="Clients\ImapClient.cs" />
+    <Compile Include="Clients\Pop3Client.cs" />
+    <Compile Include="Clients\SmtpClient.cs" />
     <Compile Include="DataTransferObjects\AttachementDto.cs" />
     <Compile Include="DataTransferObjects\MailDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
